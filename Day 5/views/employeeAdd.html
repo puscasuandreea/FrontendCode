@@ -1,0 +1,145 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">Add employee</h2>
+
+    </div>
+    <div class="panel-body">
+        <ng-form name="employeeAddForm">
+            <div class="row">
+                <div class="col-lg-6">
+                    <label for="firstName">First Name:</label>
+                        <input  type="text" id= "firstName" name="firstName" ng-model="employee.firstName" placeholder="First Name" class="form-control" ng-required ="true" ng-pattern="'\\w'">
+                    <div ng-show="employeeAddForm.firstName.$error.pattern">
+                        Nu este valid
+                    </div>
+                    <div ng-show="employeeAddForm.firstName.$error.required">
+                        Camp obligatoriu!
+                    </div>
+
+
+
+                    {{employee}}
+                    <div class="form-group" >
+                        <!--TODO#HR2-->
+
+                    </div>
+                </div>
+                    <div class="col-lg-6">
+                    <label for="lastName">Last Name:</label>
+                        <input  type="text" id="lastName"  name="lastName" ng-model="employee.lastName"  placeholder="Last Name"  class="form-control" ng-required="true">
+
+                        <div  ng-show="employeeAddForm.lastName.$error.required">
+                            Camp obligatoriu!
+                        </div>
+                        <div class="form-group">
+
+                        <!--TODO#HR2-->
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                        <label for="email">Email:</label>
+                     <input type="email" id="email" name="email" ng-model="employee.email" placeholder="Email"class="form-control" required>
+                    <div ng-show="employeeAddForm.email.$error.required"> Camp obligatoriu!</div>
+                    <div class="form-group">
+                        <!--TODO#HR2-->
+
+                    </div>
+                </div>
+                <div class="col-lg-6"><label for="phoneNumber">Phone Number:</label>
+                  <input ng-model="employee.phoneNumber" name="phone" ng-pattern="'\\d{10}'" ng-required="true" placeholder="Phone Number" class="form-control">
+                    <div ng-show="employeeAddForm.phone.$error.pattern">
+                        Nu e valid:
+                    </div>
+                    <div ng-show="employeeAddForm.phone.$error.required">
+                        E obligatoriu
+                    </div>
+                    <div class="form-group">
+                        <!--TODO#HR2-->
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group" ng-class="{ 'has-error': employeeAddForm.hireDate.$invalid && employeeAddForm.hireDate.$dirty }">
+                        <label for="hireDate">Hire Date:</label>
+                        <input type="text" id="hireDate" name="hireDate" class="form-control" ng-model="employee.hireDate"
+                               placeholder="Hire Date" ng-pattern="datePattern" required>
+                        <span class="help-block" ng-show="employeeAddForm.hireDate.$error.required
+                             && employeeAddForm.hireDate.$dirty">{{requiredErrorMessage}}</span>
+                        <span class="help-block" ng-show="employeeAddForm.hireDate.$error.pattern
+                             && employeeAddForm.hireDate.$dirty">{{patternDateNotRespectedMessage}}</span>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label for="jobId">Job Title : </label>
+                    <select   id="jobId" ng-model="employee.jobId.jobTitle " >
+                    <div class="form-group">              <!--TODO#HR2-->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <label for="salary">Salary: </label>
+                    <input  type=" number " id="salary" ng-model="employee.salary" nume="salary" ng-pattern="'\\d{6}'" placeholder="Salary" ng-required="true" class="form-control" >
+
+                    <div ng-show="employeeAddList.salary.$error.pattern">
+                        Nu este valid
+                    </div>
+                    <div ng-show="employeeAddList.salary.$error.reguired">
+                        Este obligatoriu!
+                    </div>
+                    <div class="form-group">
+                        <!--TODO#HR2-->
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group" ng-class="{ 'has-error': employeeAddForm.commissionPct.$invalid && employeeAddForm.commissionPct.$dirty }">
+                        <label for="commissionPct">Commission:</label>
+                        <input type="text" id="commissionPct" name="commissionPct" class="form-control" ng-model="employee.commissionPct"
+                               placeholder="Commission" nng-pattern="commissionPatter" required>
+                         <span class="help-block" ng-show="employeeAddForm.commissionPct.$error.required
+                             && employeeAddForm.commissionPct.$dirty">{{requiredErrorMessage}}</span>
+                         <span class="help-block" ng-show="employeeAddForm.commissionPct.$error.pattern
+                             && employeeAddForm.commissionPct.$dirty">{{patternCommisionNotRespectedMessage}}</span>
+                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <label for="departmentId"> Departament </label>
+                    <select ng-model="employee.departamentId" id="departmentId" name="departament" ng-reguired="true" ></select>
+                    <div ng-show="employeeAddForm.departament.$error.required">
+                        Este obligatoriu!
+                     <div class="form-group" >
+
+                     </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group" ng-class="{ 'has-error': employeeAddForm.manager.$invalid }">
+                        <label for="manager">Manager:</label>
+                        <select id="manager" ng-model="employee.managerId" name="manager" class="form-control" required
+                                ng-options="manager.firstName+' '+ manager.lastName for manager in managers track by manager.employeeId">
+                        </select>
+                    </div>
+                </div>
+    </div>
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-7">
+                    <div class="container">
+                        <button onclick="save()"> Save</button>
+                        <button onclick="reset()">Reset</button>
+
+
+                    </div>
+                </div>
+            </div>
+        </ng-form>
+    </div>
+</div>
